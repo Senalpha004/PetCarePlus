@@ -8,6 +8,9 @@ public class Pet {
     private String petMood;
     private String petType;
 
+    protected int hunger;
+    protected int happiness;
+
     //constructor to assign and store each input
     public Pet(String petName, int petAge, String petGender, String petBreed, String petMood, String petType) {
         this.petName = petName;
@@ -16,10 +19,12 @@ public class Pet {
         this.petBreed = petBreed;
         this.petMood = petMood;
         this.petType = petType;
+
+        this.hunger = 50;
+        this.happiness = 50;
     }
 
     //getters and setters to store and access user inputs
-
     public String getPetName() {
         return petName;
     }
@@ -57,6 +62,23 @@ public class Pet {
     public void setPetType(String petType) {
         this.petType = petType;
     }
+
+    public int getHunger() {
+        return hunger;
+    }
+    public void setHunger(int hunger) {
+        this.hunger = hunger;
+    }
+    public int getHappiness() {
+        return happiness;
+    }
+    public void setHappiness(int happiness) {
+        this.happiness = happiness;
+    }
+
+    public abstract void feed();
+    public abstract void play();
+    public abstract String getStatus();
 
     @Override
     public String toString() {

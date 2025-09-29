@@ -13,12 +13,13 @@ public class Main {
         System.out.println("\nWelcome to Pet Care Plus!");
 
         Scanner input = new Scanner(System.in);
+        ArrayList<Pet> petList = new ArrayList<>();
         boolean running = true;
         //object created to access pet manager class's methods easily
         PetManager petManager = new PetManager();
 
         while (running) {
-            System.out.println("----- MENU options -----");
+            System.out.println("\n----- MENU options -----");
             System.out.println("1. Add Pet");
             System.out.println("2. Feed/Play with Pets");
             System.out.println("3. View all Pets");
@@ -27,33 +28,56 @@ public class Main {
             try {
                 System.out.println("Your Choice? (Type the Number only)");
                 int choice = input.nextInt();
+                input.nextLine(); //clears buffer
 
                 switch (choice) {
                     case 1:
                         System.out.println("Pet's Name?");
-                        String petName = input.next();
-                        System.out.println("Pet's Age?");
+                        String petName = input.nextLine();
+                        System.out.println("Pet's Age? (months)");
                         int petAge = input.nextInt();
+                        input.nextLine();
                         System.out.println("Pet's Gender?");
-                        String petGender = input.next();
+                        String petGender = input.nextLine();
                         System.out.println("Pet's Breed? ");
-                        String petBreed = input.next();
+                        String petBreed = input.nextLine();
                         System.out.println("Pet's Mood?");
-                        String petMood = input.next();
+                        String petMood = input.nextLine();
                         System.out.println("Pet's Type? (Dog, Cat, Hamster etc..)");
-                        String petType = input.next();
+                        String petType = input.nextLine();
 
                         if (petType.equalsIgnoreCase("dog")) {
-                            System.out.println("Trained? (True/False)");
-                            boolean isTrained = input.nextBoolean();
-                            Dog newPet = new Dog(petName, petAge, petGender, petBreed, petMood, petType, isTrained);
-                            petManager.addPet(newPet);
+                            boolean validInput = false;
+                            while (!validInput) {
+                                try {
+                                    System.out.println("Trained? (true/false)");
+                                    boolean isTrained = input.nextBoolean();
+                                    input.nextLine(); //clears buffer
+                                    validInput = true;
+
+                                    Dog newPet = new Dog(petName, petAge, petGender, petBreed, petMood, petType, isTrained);
+                                    petManager.addPet(newPet);
+                                } catch (InputMismatchException e) {
+                                    System.out.println("Please enter only true or false");
+                                    input.nextLine(); //clears wrong input
+                                }
+                            }
 
                         } else if (petType.equalsIgnoreCase("cat")) {
-                            System.out.println("Trained? (True/False)");
-                            boolean isTrained = input.nextBoolean();
-                            Cat newPet = new Cat(petName, petAge, petGender, petBreed, petMood, petType, isTrained);
-                            petManager.addPet(newPet);
+                            boolean validInput = false;
+                            while (!validInput) {
+                                try {
+                                    System.out.println("Trained? (true/false)");
+                                    boolean isTrained = input.nextBoolean();
+                                    validInput = true;
+
+                                    Cat newPet = new Cat(petName, petAge, petGender, petBreed, petMood, petType, isTrained);
+                                    petManager.addPet(newPet);
+                                } catch (InputMismatchException e) {
+                                    System.out.println("Please enter only true or false");
+                                    input.nextLine();
+                                }
+                            }
 
                         }else {
                             //creating an object of the pet class to assign and store the inputs
@@ -64,9 +88,11 @@ public class Main {
                         break;
 
                     case 2:
+                        petManager.feedOrPlayPet(input, petList);
                         break;
 
                     case 3:
+                        System.out.println("\nPet Details...\n");
                         petManager.viewPets();
                         break;
 
@@ -77,12 +103,14 @@ public class Main {
 
                     default:
                         System.out.println("Please enter a correct choice!");
+                        break;
                 }
             }catch (InputMismatchException e) {
                 System.out.println("Try Again");
-                return;
+                input.nextLine();
             }
         }
+        input.close();
 
     }
 }

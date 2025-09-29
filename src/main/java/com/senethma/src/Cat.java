@@ -19,4 +19,21 @@ public class Cat extends Pet {
     public String toString() {
         return super.toString() + "\nTrained: " + (isTrained() ? "Yes" : "No");
     }
+
+    @Override
+    public void feed() {
+        hunger -= 20;
+        System.out.println(getPetName() + " is fed by you and is happy.");
+    }
+
+    @Override
+    public void play() {
+        happiness += 20;
+        System.out.println(getPetName() + " is fed by you and is happy.");
+    }
+
+    @Override
+    public String getStatus() {
+        return getPetName() + " | Hunger: " + hunger + " | Happiness: " + happiness;
+    }
 }

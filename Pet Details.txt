@@ -1,0 +1,26 @@
+
+Name: romeo
+Age: 12
+Gender: male
+Breed: labradore
+Mood: happy
+Type: dog
+Trained: Yes
+
+
+Name: looli
+Age: 2
+Gender: female
+Breed: mountain rabbit
+Mood: hungry
+Type: rabbit
+
+
+Name: casey
+Age: 5
+Gender: female
+Breed: persian cat
+Mood: happy
+Type: cat
+Trained: No
+
