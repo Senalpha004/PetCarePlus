@@ -22,14 +22,14 @@ public class Dog extends Pet{
 
     @Override
     public void feed() {
-        hunger -= 20;
+        hunger += 20;
         System.out.println(getPetName() + " is fed by you and is happy.");
     }
 
     @Override
     public void play() {
         happiness += 20;
-        System.out.println(getPetName() + " is fed by you and is happy.");
+        System.out.println(getPetName() + " has played with you and is happy.");
     }
 
     @Override

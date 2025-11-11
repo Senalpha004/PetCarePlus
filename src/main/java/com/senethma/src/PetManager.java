@@ -72,29 +72,28 @@ public class PetManager {
         Pet selectedPet = petList.get(choice - 1);
 
         //feeding or playing
-        System.out.println("Would you like to 1) feed OR 2) play with" + selectedPet.getPetName());
-        System.out.println("Your option? (Enter number only)");
+        System.out.println("Would you like to" + "\n" + "1) feed" + "\n" + " OR" + "\n" + "2) play" + " with " + selectedPet.getPetName() + "?");
+        System.out.println("\n(Enter number only)");
         int option = scanner.nextInt();
         scanner.nextLine();
 
-        switch (option) {
-            case 1:
-                selectedPet.feed();
-                break;
+            switch (option) {
+                case 1:
+                    selectedPet.feed();
+                    break;
 
                 case 2:
                     selectedPet.play();
                     break;
 
-                    default:
-                        System.out.println("Invalid option");
-                        return;
-        }
-
-        //save updated mood
-        saveToFile();
-        //show updated status
-        System.out.println("\nUpdated status of the pet: " + selectedPet.getStatus());
+                default:
+                    System.out.println("Invalid option");
+                    return;
+            }
+            //save updated mood
+            saveToFile();
+            //show updated status
+            System.out.println("\nUpdated status of the pet: " + selectedPet.getStatus());
     }
 }
 
