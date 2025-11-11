@@ -1,9 +1,6 @@
 package com.senethma;
 
-import com.senethma.src.Cat;
-import com.senethma.src.Dog;
-import com.senethma.src.Pet;
-import com.senethma.src.PetManager;
+import com.senethma.src.*;
 
 import java.util.*;
 
@@ -13,10 +10,11 @@ public class Main {
         System.out.println("\nWelcome to Pet Care Plus!");
 
         Scanner input = new Scanner(System.in);
-        ArrayList<Pet> petList = new ArrayList<>();
         boolean running = true;
         //object created to access pet manager class's methods easily
         PetManager petManager = new PetManager();
+
+        petManager.loadFromFile();
 
         while (running) {
             System.out.println("\n----- MENU options -----");
@@ -81,14 +79,15 @@ public class Main {
 
                         }else {
                             //creating an object of the pet class to assign and store the inputs
-                            Pet newPet = new Pet(petName, petAge, petGender, petBreed, petMood, petType);
+                            Pet newPet = new OtherPets(petName, petAge, petGender, petBreed, petMood, petType);
                             petManager.addPet(newPet);
                         }
+                        petManager.saveToFile();
                         System.out.println("Your pet's details are stored successfully!");
                         break;
 
                     case 2:
-                        petManager.feedOrPlayPet(input, petList);
+                        petManager.feedOrPlayPet(input);
                         break;
 
                     case 3:

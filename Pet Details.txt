@@ -1,26 +1,27 @@
+Pet Details...
 
-Name: romeo
+Name: max
 Age: 12
 Gender: male
-Breed: labradore
+Breed: german shephrard
 Mood: happy
 Type: dog
 Trained: Yes
 
 
-Name: looli
-Age: 2
-Gender: female
-Breed: mountain rabbit
-Mood: hungry
-Type: rabbit
-
-
-Name: casey
-Age: 5
+Name: rosie
+Age: 6
 Gender: female
 Breed: persian cat
-Mood: happy
+Mood: scared
 Type: cat
 Trained: No
+
+
+Name: potatoe
+Age: 6
+Gender: male
+Breed: mountain rabbit
+Mood: excited
+Type: rabbit
 

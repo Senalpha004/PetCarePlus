@@ -1,6 +1,11 @@
 package com.senethma.src;
 
-public class Pet {
+import java.io.Serializable;
+
+public abstract class Pet implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private String petName;
     private int petAge;
     private String petGender;

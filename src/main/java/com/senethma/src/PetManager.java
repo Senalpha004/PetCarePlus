@@ -1,9 +1,6 @@
 package com.senethma.src;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,29 +10,25 @@ public class PetManager {
     private final File file = new File("Pet Details.txt");
 
     public void saveToFile(){
-        try(FileWriter writer = new FileWriter(file)){
-            writer.write("Pet Details...\n");
-            for (Pet pet : petList){
-                writer.write(pet.toString() + "\n\n");
-            }
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))){
+            oos.writeObject(petList); // saves the entire list
 
         }catch (Exception e){
-            System.out.println("Error saving file" + e.getMessage());;
+            System.out.println("Error saving file" + e.getMessage());
         }
     }
 
+    @SuppressWarnings("unchecked")
     public void loadFromFile(){
         if(!file.exists()){
             petList = new ArrayList<>();
         }
-        try{
-            FileReader reader = new FileReader("Pet Details.txt");
-            BufferedReader bufferedReader = new BufferedReader(reader);
-            bufferedReader.readLine();
-            bufferedReader.close();
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))){
+            petList = (ArrayList<Pet>) ois.readObject();
 
         }catch (Exception e){
             System.out.println("Error loading file" + e.getMessage());
+            petList =  new ArrayList<>();
         }
     }
 
@@ -55,7 +48,7 @@ public class PetManager {
         }
     }
 
-    public void feedOrPlayPet(Scanner scanner, ArrayList<Pet> petList){
+    public void feedOrPlayPet(Scanner scanner){
         if (petList.isEmpty()) {
             System.out.println("There are no pets to interact with :(");
             return;
@@ -98,7 +91,10 @@ public class PetManager {
                         return;
         }
 
+        //save updated mood
+        saveToFile();
         //show updated status
         System.out.println("\nUpdated status of the pet: " + selectedPet.getStatus());
     }
 }
+
